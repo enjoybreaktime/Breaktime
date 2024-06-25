@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Break Time_program</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+    <div class="hero_area">
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/breaktime logo2.png" alt="">
+              <span>
+                Break Time
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html"> About</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="program.html"> Program </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact </a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index_KOR.html" target="_blank"> KOREAN </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+    </div>
+  
+    <!-- Program Q section -->
+    <section class="program_Q_section layout_padding">
+        <div class="container">
+          <div class="heading_container">
+            <h2>
+                When is the most <br> <span style="color:red;"> comfortable time </span> <br> to have <br>'break time'? <br>
+            </h2>
+          </div> <br>
+          <p> <span style="color:red;"> No interruption from anybody!</span> </p>
+    <label for="recurrenceType">Recurrence Type:</label>
+    <select id="recurrenceType">
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+    </select>
+    
+    <div id="intervalContainer">
+        <label for="interval">Interval:</label> (1~6)
+        <input type="number" id="interval" min="1" value="1" max="6">
+    </div>
+    
+    <div id="dayOfWeekContainer" style="display: none;">
+        <label>Days of Week:</label>
+        <div>
+            <input type="radio" name="dayOfWeek" value="0" checked>
+            <label>Sunday</label>
+        </div>
+        <div>
+            <input type="radio"   name="dayOfWeek" value="1">
+            <label>Monday</label>
+        </div>
+        <div>
+            <input type="radio"   name="dayOfWeek" value="2">
+            <label>Tuesday </label> 
+        </div>
+        <div>
+            <input type="radio"   name="dayOfWeek" value="3">
+            <label> Wednesday</label>
+        </div>
+        <div>
+            <input type="radio" name="dayOfWeek" value="4">
+            <label> Thursday</label>
+        </div>
+        <div>
+            <input type="radio" name="dayOfWeek" value="5">
+            <label>Friday </label>
+        </div>
+        <div>
+            <input type="radio" name="dayOfWeek" value="6">
+            <label> Saturday</label>
+        </div>
+    </div>
+    <div id="dayOfMonthContainer" style="display: none;">
+        <label for="selectedDayOfMonth">Day of month: (1~31)</label>
+        <input type="number" id="selectedDayOfMonth" min="1" max="31">
+    </div>
+
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate">
+
+    <button onclick="submitRecurrence()">Submit</button>
+
+    <script>
+        function submitRecurrence() {
+            const recurrenceType = document.getElementById('recurrenceType').value;
+            const interval = document.getElementById('interval').value;
+            const endDate = document.getElementById('endDate').value;
+            let selectedDays = [];
+
+            if (recurrenceType === 'weekly') {
+                // Get selected days of week
+                const radios = document.querySelectorAll('input[name="dayOfWeek"]:checked');
+                radios.forEach(radios => {
+                    selectedDays.push(radio.value);
+                });}
+            
+           else if (recurrenceType === 'monthly') {
+                // Get selected days of month
+                const selectedDayOfMonth = document.getElementById('seletedDayOfMonth').value;
+                selectedDays.push(selectedDayOfMonth);
+            }
+
+
+            // Send the selected recurrence pattern to server-side or process it further
+            console.log("Recurrence Type:", recurrenceType);
+            console.log("Interval:", interval);
+            console.log("selected Days:", selectedDays);
+            console.log("End Date:", endDate);
+            
+            // Implement further logic here (e.g., send data to server via AJAX)
+        }
+
+        // Toggle days of week container visibility based on recurrence type
+        document.getElementById('recurrenceType').addEventListener('change', function() {
+            const dayOfWeekContainer = document.getElementById('dayOfWeekContainer');
+            const dayOfMonthContainer = document.getElementById('dayOfMonthContainer');
+            if (this.value === 'weekly') {
+              dayOfWeekContainer.style.display = 'block';
+              dayOfMonthContainer.style.display = 'none';
+             } else if (this.value === 'monthly') {
+              dayOfWeekContainer.style.display = 'none';
+              dayOfMonthContainer.style.display = 'block';
+             } else {
+              dayOfWeekContainer.style.display = 'none';
+              dayOfMonthContainer.style.display = 'none';
+             }
+        });
+    </script>
+
+  <!-- info section -->
+
+  <section class="info_section layout_padding">
+    
+    <div class="container">
+      <div class="info_contact">
+        <div class="row">
+          <div class="col">
+            <a href="">
+              <img src="images/envelope-white.png" alt="">
+              <span>
+                2enjoybreaktime@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-md-9 mx-auto">
+          <p>
+            &copy; 2024 All Rights Reserved By HY LEE 
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+</body>
+</html>

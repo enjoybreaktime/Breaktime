@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+     <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Breaktime_program </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+    <div class="hero_area">
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/breaktime logo2.png" alt="">
+              <span>
+                Break Time
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav ">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index_KOR.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about_KOR.html"> About</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="program_KOR.html"> Program </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://blog.naver.com/PostList.naver?blogId=2enjoybreaktime" target="_blank"> Blog </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact_KOR.html">Contact </a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html" target="_blank"> ENGLISH </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+    </div>
+  
+    <!-- Alarm section -->
+    <section class="program_Q_section layout_padding">
+        <div class="container">
+          <div class="heading_container">
+            <h2>
+                <br> <font color=red> 가장 편안한 </font> 시간은 <br> 언제인가요? <br><br>
+            </h2>
+            
+            <!-- <img src="" alt=""> -->
+          </div> <br>
+          <h5><font color=red> 누구의 방해도 받지 않는 시간이어야 합니다! ^^ </font> </h5>
+    <label for="recurrenceType"> 반복주기:</label>
+    <select id="recurrenceType">
+        <option value="daily"> 매일</option>
+        <option value="weekly"> 매주 </option>
+        <option value="monthly"> 매월 </option>
+    </select>
+    
+    <div id="intervalContainer">
+        <label for="interval">간격:</label> (1~6)
+        <input type="number" id="interval" min="1" value="1" max="6">
+    </div>
+    
+    <div id="dayOfWeekContainer" style="display: none;">
+        <label> 요일:</label>
+        <div>
+            <input type="radio" name="dayOfWeek" value="0" checked>
+            <label>일요일 </label>
+        </div>
+        <div>
+            <input type="radio"   name="dayOfWeek" value="1">
+            <label> 월요일 </label>
+        </div>
+        <div>
+            <input type="radio"   name="dayOfWeek" value="2">
+            <label>화요일 </label> 
+        </div>
+        <div>
+            <input type="radio"   name="dayOfWeek" value="3">
+            <label> 수요일 </label>
+        </div>
+        <div>
+            <input type="radio" name="dayOfWeek" value="4">
+            <label> 목요일 </label>
+        </div>
+        <div>
+            <input type="radio" name="dayOfWeek" value="5">
+            <label> 금요일 </label>
+        </div>
+        <div>
+            <input type="radio" name="dayOfWeek" value="6">
+            <label> 토요일 </label>
+        </div>
+    </div>
+    <div id="dayOfMonthContainer" style="display: none;">
+        <label for="selectedDayOfMonth"> 매월: (1~31)</label>
+        <input type="number" id="selectedDayOfMonth" min="1" max="31">
+    </div>
+
+    <label for="endDate"> 종료일 :</label>
+    <input type="date" id="endDate">
+
+    <button onclick="submitRecurrence()"> 제출 </button>
+
+    <script>
+        function submitRecurrence() {
+            const recurrenceType = document.getElementById('recurrenceType').value;
+            const interval = document.getElementById('interval').value;
+            const endDate = document.getElementById('endDate').value;
+            let selectedDays = [];
+
+            if (recurrenceType === 'weekly') {
+                // Get selected days of week
+                const radios = document.querySelectorAll('input[name="dayOfWeek"]:checked');
+                radios.forEach(radios => {
+                    selectedDays.push(radio.value);
+                });}
+            
+           else if (recurrenceType === 'monthly') {
+                // Get selected days of month
+                const selectedDayOfMonth = document.getElementById('seletedDayOfMonth').value;
+                selectedDays.push(selectedDayOfMonth);
+            }
+
+
+            // Send the selected recurrence pattern to server-side or process it further
+            console.log("Recurrence Type:", recurrenceType);
+            console.log("Interval:", interval);
+            console.log("selected Days:", selectedDays);
+            console.log("End Date:", endDate);
+            
+            // Implement further logic here (e.g., send data to server via AJAX)
+        }
+
+        // Toggle days of week container visibility based on recurrence type
+        document.getElementById('recurrenceType').addEventListener('change', function() {
+            const dayOfWeekContainer = document.getElementById('dayOfWeekContainer');
+            const dayOfMonthContainer = document.getElementById('dayOfMonthContainer');
+            if (this.value === 'weekly') {
+              dayOfWeekContainer.style.display = 'block';
+              dayOfMonthContainer.style.display = 'none';
+             } else if (this.value === 'monthly') {
+              dayOfWeekContainer.style.display = 'none';
+              dayOfMonthContainer.style.display = 'block';
+             } else {
+              dayOfWeekContainer.style.display = 'none';
+              dayOfMonthContainer.style.display = 'none';
+             }
+        });
+    </script>
+
+  <!-- info section -->
+
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="info_contact">
+        <div class="row">
+          <div class="col-md-4">
+            <a href="">
+              <img src="images/envelope-white.png" alt="">
+              <span>
+                2enjoybreaktime@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-md-9 mx-auto">
+          <p>
+            &copy; 2024 All Rights Reserved By HY LEE 
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+</body>
+</html>
