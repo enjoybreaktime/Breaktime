@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language Switcher</title>
+<script>
+    function switchLanguage(language) {
+        var elements = document.querySelectorAll('[data-lang]');
+        elements.forEach(function(element) {
+            var key = element.getAttribute('data-lang');
+            if (translations[language] && translations[language][key]) {
+                element.innerHTML = translations[language][key];
+            }
+        });
+    }
+    
+    var translations = {
+        'en': {
+            'greeting': 'Hello!',
+            'message': 'Welcome to my website.',
+            'button': 'Switch Language'
+        },
+        'fr': {
+            'greeting': 'Bonjour!',
+            'message': 'Bienvenue sur mon site web.',
+            'button': 'Changer de langue'
+        },
+        // Add more languages and translations here
+    };
+</script>
+</head>
+<body>
+    <h1 data-lang="greeting">Hello!</h1>
+    <p data-lang="message">Welcome to my website.</p>
+    <button onclick="switchLanguage('en')" data-lang="button">Switch Language</button>
+    <button onclick="switchLanguage('fr')" data-lang="button">Changer de langue</button>
+    <!-- Add more content with data-lang attributes for translation -->
+</body>
+</html>
+
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $subject = $_POST["subject"];
+    $email = $_POST["email"];
+    $message = $_POST["message"];
+    $to = "2enjoybreaktime@naver.com"; // 받는 이메일 주소를 여기에 입력하세요.
+    $subject = "문의하기 폼: $subject";
+    $headers = "From: $email";
+    mail($to, $subject, $message, $headers);
+} 
+?> 
